@@ -14,7 +14,7 @@ Pense, use bastante lógica de programação e defina uma regra para que essas i
 Se você perdeu a explicação da tarefa no dia da aula (14/11), procure um colega e peça para que ele lhe oriente sobre o problema.
 O trabalho é em grupo de até 05 pessoas, se você quiser melhorar mais ainda o código, trazendo ele mais próximo da realidade, isso é muito bom, afinal só quem ganha é você.
 */
-public class Elevador {
+public class Main {
     public static void main(String[] args) {
 
         int qtd_andares;
@@ -25,6 +25,9 @@ public class Elevador {
         final int limite_peso = 975;
         int limite_peso_atual;
         Scanner scan = new Scanner(System.in);
+
+        // Fazer Thread para cada  elevador.
+        //Ligar a ativação do elevador com base no andar da pessoa que solicitou
 
         while (true) {
             System.out.println("==========================================================================");
@@ -58,7 +61,6 @@ public class Elevador {
 
     public static int peso_elevador (int qtd_pessoas){
 
-        int qtd_atual = qtd_pessoas;
         int peso_atual = qtd_pessoas * 75;
 
         System.out.print("Elevador com " + peso_atual + "Kg, agora.");
@@ -68,8 +70,6 @@ public class Elevador {
     }
     public static void movimento_elevador1 (int qtd_pessoas, int andar_atual, int andar_pessoa, int qtd_andares){
         int [] total_andares = new int[qtd_andares];
-
-
        if (andar_pessoa < qtd_andares | andar_atual < andar_pessoa) {
            if (andar_pessoa > andar_atual) {
                System.out.println("Elevador subindo com " + qtd_pessoas + " pessoas.");
