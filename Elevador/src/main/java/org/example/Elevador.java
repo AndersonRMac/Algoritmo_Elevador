@@ -24,26 +24,45 @@ public class Elevador {
         int qtd_pessoas;
         final int limite_pessoas = 13;
         final int limite_peso = 975;
+        int limite_peso_atual;
         Scanner scan = new Scanner(System.in);
 
-        System.out.println("Bem Vindo!");
+        while (true) {
+            System.out.println("Bem Vindo!");
 
-        System.out.println("Digite o numero de pessoas a entrar: ");
-        qtd_pessoas = scan.nextInt();
+            System.out.println("Digite o numero de pessoas a entrar: ");
+            qtd_pessoas = scan.nextInt();
 
-        System.out.println("Quantos andares tem seu prédio?");
-        qtd_andares = scan.nextInt();
+            if (qtd_pessoas > 13) {
+                System.out.println("Numero do pessoas acima do limite permitido!!!");
+                break;
+            }
+            System.out.println("Quantos andares tem seu predio?");
+            qtd_andares = scan.nextInt();
 
-        System.out.println("Em que andar você se encontra");
-        andar_atual = scan.nextInt();
+            System.out.println("Em que andar voce se encontra");
+            andar_atual = scan.nextInt();
 
-        System.out.println("Digite o andar que deseja ir:");
-        andar_pessoa = scan.nextInt();
+            System.out.println("Digite o andar que deseja ir:");
+            andar_pessoa = scan.nextInt();
 
-        movimento_elevador1(andar_atual,andar_pessoa,qtd_andares);
+            limite_peso_atual = peso_elevador(qtd_pessoas);
+            if (limite_peso_atual < limite_peso | limite_pessoas < 13) {
+                movimento_elevador1(andar_atual, andar_pessoa, qtd_andares);
+            } else {
+                System.out.println("Quantidade de pessoas acima do limite de segurança!");
+            }
+        }
     }
 
-    public static void peso_elevador (int qtd_pessoas){
+    public static int peso_elevador (int qtd_pessoas){
+
+        int qtd_atual = qtd_pessoas;
+        int peso_atual = qtd_pessoas * 75;
+
+        System.out.print("Elevador com " + peso_atual + "Kg, agora.");
+
+        return peso_atual;
 
     }
     public static void movimento_elevador1 (int andar_atual, int andar_pessoa, int qtd_andares){
@@ -57,10 +76,21 @@ public class Elevador {
 
                System.out.println("Subindo..." + i);
                if (i == andar_pessoa){
-                   System.out.println("Você chegou no seu andar!");
+                   System.out.println("Voce chegou no seu andar!");
                    break;
                }
 
+           }
+           if (andar_pessoa > qtd_andares | andar_atual > andar_pessoa) {
+               System.out.println("Vamos Descer!");
+               for (int i = (total_andares.length - 1); i > 0; i--) {
+
+                   System.out.println("Descendo..." + i);
+                   if (i == andar_pessoa) {
+                       System.out.println("Voce chegou no seu andar!");
+                       break;
+                   }
+               }
            }
 
        }
