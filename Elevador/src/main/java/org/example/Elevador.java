@@ -1,6 +1,5 @@
 package org.example;
 
-import java.util.Arrays;
 import java.util.Scanner;
 
 /*SISTEMA BÁSICO DE ELEVADOR
@@ -28,6 +27,8 @@ public class Elevador {
         Scanner scan = new Scanner(System.in);
 
         while (true) {
+            System.out.println("==========================================================================");
+            System.out.println("Portas se abrem...");
             System.out.println("Bem Vindo!");
 
             System.out.println("Digite o numero de pessoas a entrar: ");
@@ -48,7 +49,7 @@ public class Elevador {
 
             limite_peso_atual = peso_elevador(qtd_pessoas);
             if (limite_peso_atual < limite_peso | limite_pessoas < 13) {
-                movimento_elevador1(andar_atual, andar_pessoa, qtd_andares);
+                movimento_elevador1(qtd_pessoas,andar_atual, andar_pessoa, qtd_andares);
             } else {
                 System.out.println("Quantidade de pessoas acima do limite de segurança!");
             }
@@ -65,26 +66,25 @@ public class Elevador {
         return peso_atual;
 
     }
-    public static void movimento_elevador1 (int andar_atual, int andar_pessoa, int qtd_andares){
+    public static void movimento_elevador1 (int qtd_pessoas, int andar_atual, int andar_pessoa, int qtd_andares){
         int [] total_andares = new int[qtd_andares];
 
 
        if (andar_pessoa < qtd_andares | andar_atual < andar_pessoa) {
-
-           System.out.println("Subindo...");
-           for (int i = andar_atual; i < total_andares.length; i++) {
-
-               System.out.println("Subindo..." + i);
-               if (i == andar_pessoa){
-                   System.out.println("Voce chegou no seu andar!");
-                   break;
+           if (andar_pessoa > andar_atual) {
+               System.out.println("Elevador subindo com " + qtd_pessoas + " pessoas.");
+               for (int i = andar_atual; i < total_andares.length; i++) {
+                   System.out.println("Subindo..." + i);
+                   if (i == andar_pessoa) {
+                       System.out.println("Voce chegou no seu andar!");
+                       break;
+                   }
                }
-
            }
            if (andar_pessoa > qtd_andares | andar_atual > andar_pessoa) {
                System.out.println("Vamos Descer!");
-               for (int i = (total_andares.length - 1); i > 0; i--) {
-
+               System.out.println("Elevador descendo com " + qtd_pessoas + " pessoas.");
+               for (int i = (andar_atual - 1); i > 0; i--) {
                    System.out.println("Descendo..." + i);
                    if (i == andar_pessoa) {
                        System.out.println("Voce chegou no seu andar!");
@@ -92,7 +92,6 @@ public class Elevador {
                    }
                }
            }
-
        }
     }
 
