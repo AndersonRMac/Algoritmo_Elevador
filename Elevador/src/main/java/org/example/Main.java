@@ -7,13 +7,17 @@ import java.util.Scanner;
 
 public class Main extends Thread{
     public static void main(String[] args) {
-        final int qtd_andares = 20;
+
         int andar_pessoa;
         int andar_atual;
         int qtd_pessoas;
         int limite_peso_atual;
-        final int limite_pessoas = 13;
         final int limite_peso = 975;
+        final int qtd_andares = 20;
+
+        Elevador1 elevador_1 = new Elevador1();
+        Elevador2 elevador_2 = new Elevador2();
+        Elevador3 elevador_3 = new Elevador3();
 
         Scanner scan = new Scanner(System.in);
 
@@ -30,28 +34,25 @@ public class Main extends Thread{
             System.out.println("Em que andar voce se encontra");
             andar_atual = scan.nextInt();
 
-
             System.out.println("Digite o andar que deseja ir:");
             andar_pessoa = scan.nextInt();
 
             limite_peso_atual = peso_elevador(qtd_pessoas);
 
-            if (limite_peso_atual < limite_peso | limite_pessoas < 13) {
+            if (limite_peso_atual < limite_peso) {
                 int elevador1 = sorteio_andares();
                 int elevador2 = sorteio_andares();
                 int elevador3 = sorteio_andares();
-            //    -qual elevador tem andar acima ou igual ao do andar solicitado
 
-                if (andar_pessoa >= elevador1) {
-                    Elevador1 elevador_1 = new Elevador1();
+                System.out.println(elevador1 + " " + elevador2 + " " + elevador3);
+
+                if (andar_atual <= elevador1) {
                     elevador_1.run();
                     movimento_elevador1(qtd_pessoas, andar_atual, andar_pessoa, qtd_andares);
-                }else if (andar_pessoa >= elevador2){
-                    Elevador2 elevador_2 = new Elevador2();
+                }else if (andar_atual <= elevador2){
                     elevador_2.run();
                     movimento_elevador2(qtd_pessoas, andar_atual, andar_pessoa, qtd_andares);
-                } else if (andar_pessoa >= elevador3) {
-                    Elevador3 elevador_3 = new Elevador3();
+                } else if (andar_atual <= elevador3) {
                     elevador_3.run();
                     movimento_elevador3(qtd_pessoas, andar_atual, andar_pessoa, qtd_andares);
                 }
@@ -59,9 +60,7 @@ public class Main extends Thread{
             } else {
                 System.out.println("Quantidade de pessoas acima do limite de segurança!");
             }
-
         }
-
     }
     public static int peso_elevador (int qtd_pessoas){
 
