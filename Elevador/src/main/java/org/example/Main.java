@@ -55,7 +55,7 @@ public class Main extends Thread{
                 } else if (andar_atual <= elevador3) {
                     elevador_3.run();
                     movimento_elevador3(qtd_pessoas, andar_atual, andar_pessoa, qtd_andares);
-                }
+                }else System.out.println("Elevador em deslocamento, chame novamente!");
 
             } else {
                 System.out.println("Quantidade de pessoas acima do limite de segurança!");

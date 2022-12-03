@@ -19,9 +19,9 @@ public class Elevador1 extends Thread {
 
     public void run() {
 
-        //Ligar a ativação do elevador com base no andar da pessoa que solicitou
 
         System.out.println("=================================ELEVADOR 1 SELECIONADO=========================================");
+        System.out.println("ELEVADOR A CAMINHO...");
         System.out.println("Portas se abrem...");
         System.out.println("Bem Vindo!");
 
